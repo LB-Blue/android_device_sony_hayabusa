@@ -1,0 +1,2 @@
+# Allow CmHardwareService writing to vibrator intensity file
+allow system_server sysfs_vibrator:file rw_file_perms;

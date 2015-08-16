@@ -1,5 +1,8 @@
-# Make keys in CWM repeatable
-ro.cwm.enable_key_repeat=true
-
 # Graphics
 ro.sf.lcd_density=320
+ro.semc.product.model=LT29i
+ro.semc.ms_type_id=PM-0010-BV
+ro.semc.version.fs=GLOBAL-HSPA
+ro.semc.product.name=Xperia GX SO-04D
+ro.semc.product.device=LT29
+ro.product.model=LT29i

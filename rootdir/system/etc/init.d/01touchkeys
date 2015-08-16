@@ -1,0 +1,7 @@
+#!/system/bin/sh
+
+echo 0 > /sys/class/input/input1/keys_enabled
+# 0=No virtual keys
+# 1=Only menu key
+# 2=Back,Home,Menu keys
+

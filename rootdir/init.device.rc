@@ -1,3 +1,17 @@
+on early-boot
+    # Permissions for LSM330D sensor
+    chown system system /sys/devices/i2c-12/12-0019/pollrate_ms
+    chmod 0664 /sys/devices/i2c-12/12-0019/pollrate_ms
+    chown system system /sys/devices/i2c-12/12-0019/power/autosuspend_delay_ms
+    chmod 0664 /sys/devices/i2c-12/12-0019/power/autosuspend_delay_ms
+    chown system system /sys/devices/i2c-12/12-006b/pollrate_ms
+    chmod 0664 /sys/devices/i2c-12/12-006b/pollrate_ms
+    chown system system /sys/devices/i2c-12/12-006b/range
+    chmod 0664 /sys/devices/i2c-12/12-006b/range
+    
+    # AS3677/Ambient Light Sensor
+    chown system system /sys/devices/i2c-10/10-0040/als_on
+
 on boot
     # Vibrator
     chown system system /sys/class/timed_output/vibrator/level
@@ -5,9 +19,78 @@ on boot
 
     # Xperia logo light
     chown system system /sys/class/leds/logo-backlight_1/brightness
-    chmod 660 /sys/class/leds/logo-backlight_1/brightness
+    chmod 664 /sys/class/leds/logo-backlight_1/brightness
     chown system system /sys/class/leds/logo-backlight_2/brightness
-    chmod 660 /sys/class/leds/logo-backlight_2/brightness
+    chmod 664 /sys/class/leds/logo-backlight_2/brightness
+    chown system system /sys/class/leds/logo-backlight_1/use_pattern
+    chmod 664 /sys/class/leds/logo-backlight_1/use_pattern
+    chown system system /sys/class/leds/logo-backlight_2/use_pattern
+    chmod 664 /sys/class/leds/logo-backlight_2/use_pattern
+
+    # led fix
+    chown system system /sys/class/leds/pwr-red/use_pattern
+    chmod 664 /sys/class/leds/pwr-red/use_pattern
+    chown system system /sys/class/leds/pwr-red/brightness
+    chmod 664 /sys/class/leds/pwr-red/brightness
+    chown system system /sys/class/leds/pwr-green/use_pattern
+    chmod 664 /sys/class/leds/pwr-green/use_pattern
+    chown system system /sys/class/leds/pwr-green/brightness
+    chmod 664 /sys/class/leds/pwr-green/brightness
+    chown system system /sys/class/leds/pwr-blue/use_pattern
+    chmod 664 /sys/class/leds/pwr-blue/use_pattern
+    chown system system /sys/class/leds/pwr-blue/brightness
+    chmod 664 /sys/class/leds/pwr-blue/brightness
+    chown system system /sys/bus/i2c/devices/10-0040/pattern_data
+    chmod 664 /sys/bus/i2c/devices/10-0040/pattern_data
+    chown system system /sys/bus/i2c/devices/10-0040/pattern_duration_secs
+    chmod 664 /sys/bus/i2c/devices/10-0040/pattern_duration_secs
+    chown system system /sys/bus/i2c/devices/10-0040/pattern_use_softdim
+    chmod 664 /sys/bus/i2c/devices/10-0040/pattern_use_softdim
+    chown system system /sys/bus/i2c/devices/10-0040/pattern_delay
+    chmod 664 /sys/bus/i2c/devices/10-0040/pattern_delay
+    chown system system /sys/bus/i2c/devices/10-0040/dim_time
+    chmod 664 /sys/bus/i2c/devices/10-0040/dim_time
+
+    # io scheduler fix
+    chown system system /sys/block/mmcblk1/queue/scheduler
+    chmod 664 /sys/block/mmcblk1/queue/scheduler
+
+    # cpu settings fix
+    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+    chmod 664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+    chmod 664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+    chmod 664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+
+    # Owner for the proximity sensor
+    chown system system /sys/devices/i2c-12/12-0054/threshold
+    chown system system /sys/devices/i2c-12/12-0054/nburst
+
+    # AS3676/Ambient Light Sensor/Owner for the light sensor
+    chown system system /sys/devices/i2c-10/10-0040/als_on
+    chmod 666 /sys/devices/i2c-10/10-0040/als_on
+
+    # Panel backlight
+    chown system system /sys/class/leds/lcd-backlight1/brightness
+    chmod 660 /sys/class/leds/lcd-backlight1/brightness
+    chown system system /sys/class/leds/lcd-backlight2/brightness
+    chmod 660 /sys/class/leds/lcd-backlight2/brightness
+
+    # LM356x/cameralight
+    chown system camera /sys/devices/i2c-10/10-0053/torch_enable
+    chmod 660 /sys/devices/i2c-10/10-0053/torch_enable
+    chown system camera /sys/devices/i2c-10/10-0053/torch_current
+    chmod 660 /sys/devices/i2c-10/10-0053/torch_current
+    chown system system /sys/devices/i2c-10/10-0053/privacy_enable
+    chown system system /sys/devices/i2c-10/10-0053/privacy_current
+    chown system camera /sys/devices/i2c-10/10-0053/flash_enable
+    chown system camera /sys/devices/i2c-10/10-0053/flash_duration
+    chown system camera /sys/devices/i2c-10/10-0053/flash_synchronization
+    chmod 660 /sys/devices/i2c-10/10-0053/flash_synchronization
+    chown system camera /sys/devices/i2c-10/10-0053/flash_current
+    chmod 660 /sys/devices/i2c-10/10-0053/flash_current
+    chown system camera /sys/devices/i2c-10/10-0053/status
 
 on post-fs
     # Touch firmware update

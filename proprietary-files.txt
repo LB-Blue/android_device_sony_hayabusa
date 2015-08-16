@@ -18,7 +18,7 @@ bin/hci_qcomm_init
 #
 # Camera
 #
-lib/hw/camera.qcom.so:lib/hw/vendor-camera.qcom.so
+lib/hw/camera.qcom.so:lib/hw/camera.vendor.qcom.so
 lib/libcamera_clientsemc.so
 lib/libcameralight.so
 lib/libmmcamera_3a_legacy.so
@@ -77,7 +77,7 @@ lib/libcald_util.so
 # CPU
 #
 bin/mpdecision
-lib/libqc-opt.so
+lib/libqc-opt.so:vendor/lib/libqc-opt.so
 lib/libthermalclient.so
 
 
@@ -115,11 +115,8 @@ etc/firmware/dxhdcp2.mdt
 bin/irsc_util
 
 #
-# Lights
+# Sys utils
 #
-bin/illumination_service
-lib/hw/lights.default.so:lib/hw/vendor-lights.default.so
-lib/liblights-core.so
 lib/libsys-utils.so
 
 #
@@ -227,11 +224,6 @@ etc/firmware/modem_f2.mdt:etc/firmware/modem_fw.mdt
 # NFC
 #
 lib/hw/nfc.msm8960.so
-
-#
-# Post Processing
-#
-bin/mm-pp-daemon
 
 #
 # Protocol Buffers
@@ -378,3 +370,4 @@ lib/libmm-color-convertor.so
 lib/libmpl.so
 lib/libnl.so
 lib/libxml.so
+bin/illumination_service

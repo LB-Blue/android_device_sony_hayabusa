@@ -27,7 +27,7 @@ PRODUCT_COPY_FILES += \
 # currently contain all of the bitmaps at xhdpi density so
 # we do this little trick to fall back to the hdpi version
 # if the xhdpi doesn't exist.
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # Configuration scripts
@@ -45,6 +45,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/usr/idc/clearpad.idc:system/usr/idc/clearpad.idc \
     $(LOCAL_PATH)/rootdir/system/usr/keylayout/simple_remote_appkey.kl:system/usr/keylayout/simple_remote_appkey.kl
 
+# init.d
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/etc/init.d/01touchkeys:system/etc/init.d/01touchkeys \
+    $(LOCAL_PATH)/rootdir/system/etc/init.d/02hotplug:system/etc/init.d/02hotplug
+
 # Device specific init
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.device.rc:root/init.device.rc
@@ -52,6 +57,33 @@ PRODUCT_COPY_FILES += \
 # USB function switching
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.sony.usb.rc:root/init.sony.usb.rc
+
+DEFAULT_PROPERTY_OVERRIDES += \
+	ro.adb.secure=0 \
+	ro.secure=0 \
+	persist.sys.usb.config=mtp,adb \
+	persist.sys.isUsbOtgEnabled=true
+
+ADDITIONAL_DEFAULT_PROPERTIES += \
+	ro.semc.version.sw=1266-3320 \
+	ro.semc.version.sw_revision=9.2.A.1.215 \
+	ro.semc.version.sw_variant=GENERIC \
+	ro.semc.version.sw_type=user
+
+ADDITIONAL_DEFAULT_PROPERTIES += \
+	ro.semc.version.cust=1266-5813 \
+	ro.semc.version.cust_revision=R3J \
+	ro.somc.customerid=104 \
+	ro.semc.version.fs_revision=9.2.A.1.215 \
+	ro.semc.product.model=LT29i
+	
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/recovery/root/sepolicy:recovery/root/sepolicy
+
+# Hijack boot
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
+    $(LOCAL_PATH)/rootdir/hijack/hijack.sh:system/bin/hijack/hijack.sh
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 

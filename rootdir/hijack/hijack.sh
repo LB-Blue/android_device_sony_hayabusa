@@ -256,7 +256,7 @@ then
 	export PATH="${_PATH}"
 	sleep 1
 	exec /system/bin/chargemon
-elif [ -s /temp/keycheck_up -o -e /cache/recovery/twrp ]
+elif [ -s /temp/keycheck_up -o -e /cache/recovery/twrp -o -e /cache/recovery/command ]
 then
 	echo "======= Hijack: boot twrp =======" > /dev/kmsg
 	SETLED 0 255 255

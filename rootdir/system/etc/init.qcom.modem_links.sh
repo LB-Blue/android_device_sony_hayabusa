@@ -28,6 +28,7 @@
 
 set +x
 export PATH=/system/xbin:/system/bin:/sbin/:bin
+insmod /system/lib/modules/f2fs.ko
 mount -o remount,rw /
 mkdir /temp/
 mkdir /temp/ramdisk/
